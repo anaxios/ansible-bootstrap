@@ -6,11 +6,12 @@
     username: bob
     git_repo: "https://github.com/anaxios/ansible.git"
     ssh_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFWKTb713iPVEl3cfhlUnTrlTlXE0ALl1Iv4uJIhC8T server\server@server' # must be single quotes
-    packages:
+    pkgs:
       - btop
       - tmux
       - neovim
       - cron
+      - cron-daemon-common
 
   pre_tasks:
     - name: update repositories
