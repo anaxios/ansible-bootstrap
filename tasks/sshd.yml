@@ -2,7 +2,7 @@
   ansible.posix.authorized_key:
     user: "{{ username }}"
     state: present
-    key: "{{ lookup('file', './files/id_ed25519.pub') }}"
+    key: "{{ ssh_key }}"
 
 - name: set password auth to no in /etc/ssh/sshd_config
   lineinfile:
