@@ -4,6 +4,7 @@
   become: true
   vars:
     username: bob
+    git_repo: "https://github.com/anaxios/ansible.git"
 
   pre_tasks:
     - name: update repositories
