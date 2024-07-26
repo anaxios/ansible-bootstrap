@@ -8,7 +8,7 @@
   lineinfile:
       path: /etc/ssh/sshd_config
       state: present
-      regexp: '^PasswordAuthentication'
+      regexp: '^#?PasswordAuthentication'
       line: 'PasswordAuthentication no'
   register: file
 
@@ -16,7 +16,7 @@
   lineinfile:
       path: /etc/ssh/sshd_config
       state: present
-      regexp: '^PubkeyAuthentication'
+      regexp: '^#?PubkeyAuthentication'
       line: 'PubkeyAuthentication yes'
   register: file
 
@@ -24,16 +24,16 @@
   lineinfile:
       path: /etc/ssh/sshd_config
       state: present
-      regexp: '^AuthorizedKeysFile'
+      regexp: '^#?AuthorizedKeysFile'
       line: 'AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2'
   register: file
 
-- name: restart sshd service
-  service:
-          name: sshd
-          state: restarted
-          enabled: yes
-  when: file.changed
+  #- name: restart sshd service
+  #  service:
+  #          name: sshd
+  #          state: restarted
+  #          enabled: yes
+  #  when: file.changed
 
           #          - name: Wait for the reboot and reconnect 
           #            wait_for:

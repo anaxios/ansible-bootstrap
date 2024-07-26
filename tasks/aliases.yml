@@ -5,10 +5,6 @@
     backup: true
     state: present
     block: |
-        if $(which youtube-dl >/dev/null); then
-            alias youtube-dl="python3 /usr/local/bin/youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
-        fi
-
         if $(which nvim >/dev/null); then
             alias vim=nvim
         fi
