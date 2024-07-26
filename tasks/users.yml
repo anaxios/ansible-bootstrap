@@ -1,7 +1,7 @@
 - name: add ansible user
- user:
-   name: ansible
-   system: yes
+  user:
+    name: ansible
+    system: yes
 
 - name: set up sudo for user ansible
   blockinfile:
@@ -16,11 +16,11 @@
       ansible ALL=(ALL) NOPASSWD: ALL
 
 - name: add ansible-pull cron job
- cron:
-   name: ansible auto-provision
-   user: ansible
-   minute: "*/10"
-   job: ansible-pull -o -U {{ git_repo }} 
+  cron:
+    name: ansible auto-provision
+    user: ansible
+    minute: "*/10"
+    job: ansible-pull -o -U {{ git_repo }} 
 
 - name: add user
   ansible.builtin.user:
