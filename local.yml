@@ -13,9 +13,9 @@
       changed_when: False
 
   tasks:
-    - include: tasks/users.yml
-    - include: tasks/sshd.yml
-    - include: tasks/aliases.yml
-#    - include: tasks/bashrc.yml
-    - include: tasks/packages.yml
+    - import_tasks: tasks/users.yml
+    - import_tasks: tasks/sshd.yml
+    - import_tasks: tasks/aliases.yml
+#    - import_tasks: tasks/bashrc.yml
+    - import_tasks: tasks/packages.yml
 
