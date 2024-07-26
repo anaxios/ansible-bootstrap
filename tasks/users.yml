@@ -22,6 +22,11 @@
     minute: "*/10"
     job: ansible-pull -o -U {{ git_repo }} 
 
+- name: Start service cron, if not started
+  ansible.builtin.service:
+    name: cron
+    state: started
+
 - name: add user
   ansible.builtin.user:
     name: "{{ username }}"
