@@ -22,15 +22,27 @@
   ansible.builtin.user:
     name: "{{ username }}"
     system: no 
-    groups: "sudo"
     shell: /usr/bin/bash
-    password: "{{ 'password' | password_hash('sha512') }}"
-    update_password: on_create
+    #groups: "sudo"
+    #password: "{{ 'password' | password_hash('sha512') }}"
+    #update_password: on_create
     # register: pas
 
     #- name: for user to change password
     #  shell: change -d 0 {{ username }}
     #  when: pas.changed
+    #
+- name: set up sudo for user
+  blockinfile:
+    path: /etc/sudoers.d/{{ username }}
+    create: yes
+    backup: true
+    state: present
+    owner: root
+    group: root
+    mode: 0440
+    block: |
+      {{ username }} ALL=(ALL) NOPASSWD: ALL
 
     #- name: set up sudo for user
     #  copy:
