@@ -22,8 +22,8 @@
   ansible.builtin.user:
     name: "{{ username }}"
     system: no 
-    groups: "wheel"
-    shell: /bin/bash
+    groups: "sudo"
+    shell: /usr/bin/bash
 
     #- name: set up sudo for user
     #  copy:
