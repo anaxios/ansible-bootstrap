@@ -3,20 +3,24 @@
 #    name: ansible
 #    system: yes
 
-#- name: set up sudo for ansible user
-#  copy:
-#    src: files/sudoer_ansible
-#    dest: /etc/sudoers.d/ansible
-#    owner: root
-#    group: root
-#    mode: 0440
+# - name: set up sudo for user ansible
+#   blockinfile:
+#     path: /etc/sudoers.d/ansible
+#     create: yes
+#     backup: true
+#     state: present
+#     owner: root
+#     group: root
+#     mode: 0440
+#     block: |
+#       ansible ALL=(ALL) NOPASSWD: ALL
 
-    #- name: add ansible-pull cron job
-    #  cron:
-    #    name: ansible auto-provision
-    #    user: ansible
-    #    minute: "*/10"
-    #    job: ansible-pull -o -U {{ git_repo }} 
+#- name: add ansible-pull cron job
+#  cron:
+#    name: ansible auto-provision
+#    user: ansible
+#    minute: "*/10"
+#    job: ansible-pull -o -U {{ git_repo }} 
 
 - name: add user bob
   ansible.builtin.user:
@@ -32,6 +36,7 @@
     #  shell: change -d 0 {{ username }}
     #  when: pas.changed
     #
+
 - name: set up sudo for user
   blockinfile:
     path: /etc/sudoers.d/{{ username }}
@@ -43,11 +48,3 @@
     mode: 0440
     block: |
       {{ username }} ALL=(ALL) NOPASSWD: ALL
-
-    #- name: set up sudo for user
-    #  copy:
-    #    src: files/sudoer_{{ username }}
-    #    dest: /etc/sudoers.d/{{ username }}
-    #    owner: root
-    #    group: root
-    #    mode: 0440
