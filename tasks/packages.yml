@@ -3,4 +3,4 @@
     name:
       - btop
       - tmux
-      - nvim
+      - neovim
