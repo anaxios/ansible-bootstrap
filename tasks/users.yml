@@ -19,14 +19,15 @@
     #    job: ansible-pull -o -U {{ git_repo }} 
 
 - name: add user bob
-  user:
+  ansible.builtin.user:
     name: "{{ username }}"
     system: no 
+    groups: "wheel"
 
-- name: set up sudo for user
-  copy:
-    src: files/sudoer_{{ username }}
-    dest: /etc/sudoers.d/{{ username }}
-    owner: root
-    group: root
-    mode: 0440
+    #- name: set up sudo for user
+    #  copy:
+    #    src: files/sudoer_{{ username }}
+    #    dest: /etc/sudoers.d/{{ username }}
+    #    owner: root
+    #    group: root
+    #    mode: 0440

@@ -5,6 +5,10 @@
   vars:
     username: bob
     git_repo: "https://github.com/anaxios/ansible.git"
+    packages:
+      - btop
+      - tmux
+      - neovim
 
   pre_tasks:
     - name: update repositories
