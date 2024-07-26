@@ -1,28 +1,28 @@
-#- name: add ansible user
-#  user:
-#    name: ansible
-#    system: yes
+- name: add ansible user
+ user:
+   name: ansible
+   system: yes
 
-# - name: set up sudo for user ansible
-#   blockinfile:
-#     path: /etc/sudoers.d/ansible
-#     create: yes
-#     backup: true
-#     state: present
-#     owner: root
-#     group: root
-#     mode: 0440
-#     block: |
-#       ansible ALL=(ALL) NOPASSWD: ALL
+- name: set up sudo for user ansible
+  blockinfile:
+    path: /etc/sudoers.d/ansible
+    create: yes
+    backup: true
+    state: present
+    owner: root
+    group: root
+    mode: 0440
+    block: |
+      ansible ALL=(ALL) NOPASSWD: ALL
 
-#- name: add ansible-pull cron job
-#  cron:
-#    name: ansible auto-provision
-#    user: ansible
-#    minute: "*/10"
-#    job: ansible-pull -o -U {{ git_repo }} 
+- name: add ansible-pull cron job
+ cron:
+   name: ansible auto-provision
+   user: ansible
+   minute: "*/10"
+   job: ansible-pull -o -U {{ git_repo }} 
 
-- name: add user bob
+- name: add user
   ansible.builtin.user:
     name: "{{ username }}"
     system: no 

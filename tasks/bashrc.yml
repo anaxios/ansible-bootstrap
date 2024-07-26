@@ -2,5 +2,5 @@
   copy:
     src: files/bashrc
     dest: /home/{{ username }}/.bashrc
-    owner: bob 
-    group: bob 
+    owner: "{{ username }}"
+    group: "{{ username }}"

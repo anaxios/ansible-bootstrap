@@ -10,6 +10,7 @@
       - btop
       - tmux
       - neovim
+      - cron
 
   pre_tasks:
     - name: update repositories
