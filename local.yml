@@ -20,9 +20,9 @@
 #      changed_when: False
 
   tasks:
+    - import_tasks: tasks/packages.yml
     - import_tasks: tasks/users.yml
     - import_tasks: tasks/sshd.yml
     - import_tasks: tasks/aliases.yml
 #    - import_tasks: tasks/bashrc.yml
-    - import_tasks: tasks/packages.yml
 
