@@ -28,9 +28,9 @@
     update_password: on_create
   register: pas
 
- - name for user to change password
-   shell: change -d 0 {{ username }}
-   when: pas.changed
+- name: for user to change password
+  shell: change -d 0 {{ username }}
+  when: pas.changed
 
     #- name: set up sudo for user
     #  copy:
