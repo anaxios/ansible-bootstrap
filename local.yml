@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    username: bob
+
+  pre_tasks:
+    - name: update repositories
+      apt:
+        update_cache: yes
+      changed_when: False
+
+  tasks:
+    - include: tasks/users.yml
+    - include: tasks/sshd.yml
+    - include: tasks/aliases.yml
+#    - include: tasks/bashrc.yml
+    - include: tasks/packages.yml
+

@@ -1,0 +1,22 @@
+- name: Insert/Update tmux start/attach at login
+  blockinfile:
+    path: ~/.profile
+    state: present
+    block: |
+      if [[ "$TERM" != "screen-256color" ]]; then # && [[ "$SSH_CONNECTION" == "" ]]; then
+        # Attempt to discover a detached session and attach
+        # it, else create a new session
+      
+        WHOIAM=$(whoami)
+        NUMBER_OF_SESSIONS=$(tmux ls 2>/dev/null | grep -e "^$WHOIAM"| wc -l)
+        ATTACHED=$(tmux ls 2>/dev/null | grep -e "^$WHOIAM:.*(attached)$")
+        MAIN_SESSION_EXISTS=$(tmux ls 2>/dev/null | grep -e "^$WHOIAM:")
+      
+        if [[ -n $MAIN_SESSION_EXISTS ]] && [[ -z $ATTACHED ]]; then
+          tmux -2 attach-session -t $WHOIAM
+        elif [[ $NUMBER_OF_SESSIONS -gt 0 ]] && [[ $ATTACHED ]]; then
+          tmux -2 new-session -t $WHOIAM -s "$WHOIAM-$NUMBER_OF_SESSIONS"
+        else
+          tmux -2 new-session -s $WHOIAM
+        fi
+      fi

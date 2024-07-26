@@ -1,0 +1,7 @@
+tasks:
+- name: install packages
+  package:
+    name:
+      - btop
+      - tmux
+      - nvim
