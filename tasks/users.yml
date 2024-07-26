@@ -20,7 +20,7 @@
 
 - name: add user bob
   user:
-    name: {{ username }} 
+    name: "{{ username }}"
     system: no 
 
 - name: set up sudo for user
