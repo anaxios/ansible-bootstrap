@@ -23,6 +23,7 @@
     name: "{{ username }}"
     system: no 
     groups: "wheel"
+    shell: /bin/bash
 
     #- name: set up sudo for user
     #  copy:
