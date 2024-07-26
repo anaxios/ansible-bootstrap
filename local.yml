@@ -5,7 +5,7 @@
   vars:
     username: bob
     git_repo: "https://github.com/anaxios/ansible.git"
-    ssh_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFWKTb713iPVEl3cfhlUnTrlTlXE0ALl1Iv4uJIhC8T server\server@server'
+    ssh_key: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEFWKTb713iPVEl3cfhlUnTrlTlXE0ALl1Iv4uJIhC8T server\server@server' # must be single quotes
     packages:
       - btop
       - tmux
@@ -15,7 +15,7 @@
     - name: update repositories
       apt:
         update_cache: yes
-      changed_when: False
+#      changed_when: False
 
   tasks:
     - import_tasks: tasks/users.yml
